@@ -7,8 +7,9 @@ class IsAdminOrReadAndCreateOnly(BasePermission):
             return True
         else:
             if 'pk' not in view.kwargs:
-                comentario_id = view.kwargs["pk"]
-                comentario_bd = Comentario.objects.get(pk = comentario_id)
+                return False
+            comentario_id = view.kwargs["pk"]
+            comentario_bd = Comentario.objects.get(pk = comentario_id)
 
             if request.user.id == comentario_bd.usuario.id:
                 return True
