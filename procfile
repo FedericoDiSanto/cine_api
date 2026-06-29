@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn cine.wsgi
+web: gunicorn cine.wsgi --bind 0.0.0.0:$PORT
