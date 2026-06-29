@@ -6,8 +6,6 @@ class IsAdminOrReadAndCreateOnly(BasePermission):
         if request.method == "GET" or request.method == "POST":
             return True
         else:
-            if 'pk' not in view.kwargs:
-                return False
             comentario_id = view.kwargs["pk"]
             comentario_bd = Comentario.objects.get(pk = comentario_id)
 
