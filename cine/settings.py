@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-=q(d&su6g&sykh&9m1@889l!!h4vzbnpox!%=7jj(@p_c8ee4k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cineapi-production-dc9a.up.railway.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
