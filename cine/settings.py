@@ -168,3 +168,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 CSRF_TRUSTED_ORIGINS = ['https://cineapi-production-6599.up.railway.app']
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+}
