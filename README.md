@@ -8,8 +8,10 @@
 
 API REST para un catálogo de películas: gestión de películas, categorías y comentarios de usuarios, con autenticación JWT y documentación interactiva.
 
-**Demo en vivo:** https://cineapi-production-6599.up.railway.app
-**Documentación:** [Swagger](https://cineapi-production-6599.up.railway.app/docs/) · [ReDoc](https://cineapi-production-6599.up.railway.app/redocs/)
+**Demo en vivo:** https://cine-api-8uih.onrender.com
+**Documentación:** [Swagger](https://cine-api-8uih.onrender.com/docs/) · [ReDoc](https://cine-api-8uih.onrender.com/redocs/)
+
+> Desplegado en el plan gratuito de Render: si el servicio estuvo inactivo, la primera petición puede demorar hasta un minuto en responder.
 
 ---
 
@@ -25,6 +27,7 @@ API REST para un catálogo de películas: gestión de películas, categorías y 
 | Documentación | drf-yasg (Swagger UI + ReDoc) |
 | Imágenes | Pillow |
 | Servidor | Gunicorn + WhiteNoise |
+| Despliegue | Render (aplicación) + Neon (base de datos) |
 | Python | 3.14 |
 
 ---
@@ -39,9 +42,7 @@ cine_api/
 ├── peliculas/             # Catálogo de películas
 ├── comentarios/           # Comentarios de usuarios sobre películas
 ├── manage.py
-├── requirements.txt
-├── runtime.txt
-└── Procfile
+└── requirements.txt
 ```
 
 Cada app de dominio sigue la misma organización:
@@ -268,6 +269,8 @@ curl -X PUT http://localhost:8000/api/auth/me/ \
 
 ## Ejemplos de uso
 
+Los ejemplos usan `http://localhost:8000`. Para probarlos contra el demo, reemplazá esa base por `https://cine-api-8uih.onrender.com`.
+
 ### Crear una categoría (requiere staff)
 
 ```bash
@@ -310,6 +313,8 @@ curl -X POST http://localhost:8000/api/pelicula/ \
 ```
 
 La respuesta devuelve `poster` como la URL del archivo servido bajo `/media/`.
+
+> **Sobre las imágenes en el demo:** el plan gratuito de Render no incluye disco persistente, así que los archivos subidos no sobreviven a un redespliegue. La carga de imágenes se puede probar localmente.
 
 ### Crear un comentario
 
@@ -437,14 +442,28 @@ PORT: 5432
 
 Si tu usuario de PostgreSQL es distinto, ajustá ese bloque o definí la variable de entorno `DATABASE_URL`, que tiene prioridad sobre la configuración local.
 
+### Datos de ejemplo
+
+El repositorio incluye un fixture con películas de ejemplo:
+
+```bash
+python manage.py loaddata peliculas.json
+```
+
 ---
 
 ## Variables de entorno
 
-| Variable | Descripción |
-|---|---|
-| `DATABASE_URL` | Cadena de conexión a PostgreSQL (`postgres://usuario:clave@host:puerto/base`). Si está definida, se usa en lugar de la configuración de desarrollo. |
-| `PORT` | Puerto en el que escucha Gunicorn. Lo inyecta la plataforma de despliegue. |
+Toda la configuración que cambia entre desarrollo y producción se lee del entorno. En local no hace falta definir ninguna: cada una tiene un valor por defecto pensado para desarrollo.
+
+| Variable | Descripción | Por defecto |
+|---|---|---|
+| `DATABASE_URL` | Cadena de conexión a PostgreSQL (`postgres://usuario:clave@host:puerto/base`). Si está definida, se usa en lugar de la configuración local. | — (usa la config local) |
+| `SECRET_KEY` | Clave de firma de Django. | clave de desarrollo |
+| `DEBUG` | `True` o `False`. | `True` |
+| `ALLOWED_HOSTS` | Dominios permitidos, separados por coma. | `*` |
+| `CSRF_TRUSTED_ORIGINS` | Orígenes confiables para CSRF, con protocolo, separados por coma. | vacío |
+| `PORT` | Puerto en el que escucha Gunicorn. Lo inyecta la plataforma. | — |
 
 ---
 
@@ -460,20 +479,23 @@ python manage.py test
 
 ## Despliegue
 
-El proyecto está desplegado en Railway.
+La aplicación corre en **Render** y la base de datos en **Neon**. Están separadas a propósito: el servidor de aplicación es descartable y se reconstruye en cada deploy, mientras que los datos persisten en un servicio dedicado.
 
-**`Procfile`:**
+**Build command:**
 
 ```
-release: python manage.py migrate
-web: gunicorn cine.wsgi --bind 0.0.0.0:$PORT
+pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
 ```
 
-Las migraciones se ejecutan automáticamente en cada release. Los archivos estáticos los sirve WhiteNoise; antes de desplegar hay que generarlos:
+**Start command:**
 
-```bash
-python manage.py collectstatic
 ```
+gunicorn cine.wsgi:application
+```
+
+Las migraciones se aplican en cada build y los archivos estáticos los sirve WhiteNoise. Cada push a `main` dispara un nuevo despliegue automático.
+
+La conexión a la base se resuelve por la variable `DATABASE_URL`, así que el mismo código funciona en local y en producción sin cambios.
 
 ---
 
@@ -490,4 +512,4 @@ Todos los modelos están registrados en el admin de Django (`/admin/`):
 
 ## Autor
 
-**Federico Di Santo** — [GitHub](https://github.com/FedericoDiSanto)
+**Federico Di Santo** — [GitHub](https://github.com/FedericoDiSanto) · [LinkedIn](https://www.linkedin.com/in/di-santo-federico-javier/)

@@ -1,0 +1,156 @@
+[
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "Interestelar",
+      "categoria": 3,
+      "anio_creacion": 2014,
+      "descripcion": "Con la Tierra agotada, un grupo de exploradores atraviesa un agujero de gusano en busca de un nuevo hogar para la humanidad.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "Blade Runner",
+      "categoria": 3,
+      "anio_creacion": 1982,
+      "descripcion": "En un Los Ángeles distópico, un policía especializado en cazar replicantes empieza a dudar de su propia humanidad.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "Matrix",
+      "categoria": 3,
+      "anio_creacion": 1999,
+      "descripcion": "Un programador descubre que la realidad que conoce es una simulación creada por máquinas.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "El Padrino",
+      "categoria": 5,
+      "anio_creacion": 1972,
+      "descripcion": "La crónica de la familia Corleone y del ascenso de Michael desde hijo reticente hasta jefe del clan.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "Parásitos",
+      "categoria": 5,
+      "anio_creacion": 2019,
+      "descripcion": "Una familia sin recursos se infiltra de a poco en la casa de una familia adinerada, hasta que el plan se descontrola.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "El Secreto de sus Ojos",
+      "categoria": 5,
+      "anio_creacion": 2009,
+      "descripcion": "Un empleado judicial retirado reabre el recuerdo de un crimen sin resolver que marcó su vida.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "El Resplandor",
+      "categoria": 1,
+      "anio_creacion": 1980,
+      "descripcion": "Un escritor acepta cuidar un hotel aislado durante el invierno y el encierro lo empuja a la locura.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "El Exorcista",
+      "categoria": 1,
+      "anio_creacion": 1973,
+      "descripcion": "Dos sacerdotes intentan liberar a una niña de doce años de una posesión demoníaca.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "El Gran Lebowski",
+      "categoria": 2,
+      "anio_creacion": 1998,
+      "descripcion": "Una confusión de identidades mete a un desocupado aficionado al bowling en un enredo de secuestros y millonarios.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "Relatos Salvajes",
+      "categoria": 2,
+      "anio_creacion": 2014,
+      "descripcion": "Seis historias independientes sobre personas comunes que cruzan el límite de la venganza.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "Mad Max: Furia en el Camino",
+      "categoria": 4,
+      "anio_creacion": 2015,
+      "descripcion": "En un desierto post-apocalíptico, una guerrera huye con las esposas de un tirano en una persecución sin pausa.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "John Wick",
+      "categoria": 4,
+      "anio_creacion": 2014,
+      "descripcion": "Un asesino retirado vuelve a la actividad para vengar la muerte del último regalo que le dejó su esposa.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "El Viaje de Chihiro",
+      "categoria": 6,
+      "anio_creacion": 2001,
+      "descripcion": "Una nena queda atrapada en un mundo de espíritus y debe trabajar en una casa de baños para rescatar a sus padres.",
+      "estado": true
+    }
+  },
+  {
+    "model": "peliculas.pelicula",
+    "pk": null,
+    "fields": {
+      "nombre": "Coco",
+      "categoria": 6,
+      "anio_creacion": 2017,
+      "descripcion": "Un chico que sueña con ser músico termina en la Tierra de los Muertos y descubre el secreto de su familia.",
+      "estado": true
+    }
+  }
+]
