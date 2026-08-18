@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-=q(d&su6g&sykh&9m1@889l!!h4vzbnpox!%=7jj(@p_c8ee4k"
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-solo-para-desarrollo-local")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
 
 
 # Application definition
@@ -82,7 +82,6 @@ WSGI_APPLICATION = "cine.wsgi.application"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 import dj_database_url
-import os
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
@@ -160,7 +159,7 @@ SIMPLE_JWT = {
 }
 
 STATIC_URL = "static/"
-STATIC_ROOT = "./static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 AUTH_USER_MODEL = "user.User"
 
@@ -168,7 +167,9 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
-CSRF_TRUSTED_ORIGINS = ['https://cineapi-production-6599.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    origen for origen in os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",") if origen
+]
 
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,
